@@ -1,11 +1,13 @@
-import { MainContainer } from "../MainContainer";
 import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useData } from "../../context";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button } from "../Button";
+import { MainContainer } from "../MainContainer";
 import { Form } from "../Form";
 import { Input } from "../Input";
-import { useForm } from "react-hook-form";
-import { Button } from "../Button";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
   firstName: yup
@@ -19,17 +21,21 @@ const schema = yup.object().shape({
 });
 
 export const Step1 = () => {
+  const { setValues, data } = useData();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm({
+    defaultValues: { firstName: data.firstName, lastName: data.lastName },
     mode: "onBlur",
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    navigate("/step-2");
+    setValues(data);
   };
 
   return (
