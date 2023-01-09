@@ -12,8 +12,8 @@ export const Input = ({ control, name, ...rest }) => {
           variant="outlined"
           margin="normal"
           fullWidth
-          {...rest}
           {...field}
+          {...rest}
         />
       )}
     />

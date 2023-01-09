@@ -48,6 +48,7 @@ export const Step1 = () => {
           control={control}
           label="First Name"
           name="firstName"
+          required
           error={!!errors.firstName}
           helperText={errors?.firstName?.message}
         />
@@ -55,10 +56,11 @@ export const Step1 = () => {
           control={control}
           label="Last Name"
           name="lastName"
+          required
           error={!!errors.lastName}
           helperText={errors?.lastName?.message}
         />
-        <Button>Submit</Button>
+        <Button>Next</Button>
       </Form>
     </MainContainer>
   );
